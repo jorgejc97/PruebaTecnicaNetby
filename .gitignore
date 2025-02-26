@@ -1,0 +1,52 @@
+# Archivos y carpetas generadas por .NET (Backend)
+*.csproj.user
+*.suo
+*.user
+*.sln.docstates
+bin/
+obj/
+*.log
+*.pdb
+*.cache
+*.dll
+*.exe
+*.nupkg
+BackEnd/DynamicFormApi/bin/
+BackEnd/DynamicFormApi/obj/
+
+# Archivos y carpetas generadas por Node.js/React (Frontend)
+node_modules/
+dist/
+dist-ssr/
+*.log
+*.local
+FrontEnd/DynamicFormApp/dist/
+FrontEnd/DynamicFormApp/node_modules/
+
+# Archivos de entorno
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Archivos de sistema y editores
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/
+.idea/
+*.iml
+
+# Visual Studio (agregado para .vs, .v2, .vsidx)
+.vs/
+*.v2
+*.vsidx
+
+# Archivos de pruebas y temporales
+coverage/
+*.tmp
+
+# Base de datos local (opcional)
+*.db
+# *.bak  # Descomenta si no querés subir el .bak
