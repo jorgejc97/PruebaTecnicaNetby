@@ -15,7 +15,8 @@ namespace DynamicFormApi.Infrastructure.Data
             modelBuilder.Entity<Form>()
                 .HasMany(f => f.Fields)
                 .WithOne(ff => ff.Form)
-                .HasForeignKey(ff => ff.FormId);
+                .HasForeignKey(ff => ff.FormId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

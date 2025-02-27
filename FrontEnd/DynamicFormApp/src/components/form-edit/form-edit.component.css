@@ -1,0 +1,36 @@
+.form-edit {
+    text-align: center;
+    padding: 20px;
+}
+
+.form-edit h1 {
+    margin-bottom: 20px;
+}
+
+.actions {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.actions button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.actions button:nth-child(2) {
+    background-color: #dc3545;
+}
+
+.actions button:hover {
+    background-color: #0056b3;
+}
+
+.actions button:nth-child(2):hover {
+    background-color: #c82333;
+}

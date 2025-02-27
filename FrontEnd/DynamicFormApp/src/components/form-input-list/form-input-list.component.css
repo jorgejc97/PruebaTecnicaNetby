@@ -1,0 +1,21 @@
+.form-input-list {
+    margin: 20px 0;
+}
+
+.field {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.field label {
+    width: 120px;
+    text-align: right;
+    margin-right: 10px;
+}
+
+.field input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}

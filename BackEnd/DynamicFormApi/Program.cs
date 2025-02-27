@@ -1,7 +1,7 @@
 using DynamicFormApi.Api;
 using DynamicFormApi.Aplication.Services;
-using DynamicFormApi.Data;
 using DynamicFormApi.Domain.Interfaces;
+using DynamicFormApi.Infrastructure;
 using DynamicFormApi.Infrastructure.Data;
 using DynamicFormApi.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -25,7 +25,6 @@ builder.Services.AddCors(options =>
     });
 });
 
-// Agregar Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
@@ -35,19 +34,39 @@ builder.Services.AddSwaggerGen(c =>
 
 var app = builder.Build();
 
+app.UseExceptionHandler(errorApp =>
+{
+    errorApp.Run(async context =>
+    {
+        var exception = context.Features.Get<Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature>()?.Error;
+        if (exception != null)
+        {
+            context.Response.ContentType = "application/json";
+            if (exception is ArgumentException argEx)
+            {
+                context.Response.StatusCode = exception.Message.Contains("does not exist") ? 404 : 400;
+                await context.Response.WriteAsync($@"{{""error"": ""{argEx.Message}""}}");
+            }
+            else
+            {
+                context.Response.StatusCode = 500;
+                await context.Response.WriteAsync($@"{{""error"": ""An unexpected error occurred""}}");
+            }
+        }
+    });
+});
+
 app.UseCors("AllowReactApp");
 app.UseSwagger();
 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Dynamic Form API v1"));
-// Registrar endpoints
+
 app.MapFormEndpoints();
 
-// Datos iniciales
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     var service = scope.ServiceProvider.GetRequiredService<FormService>();
     db.Database.EnsureCreated();
-
     await DataSeeder.SeedInitialDataAsync(service);
 }
 

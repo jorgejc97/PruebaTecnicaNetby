@@ -1,22 +1,18 @@
-import { useState } from "react";
-import FormList from "./components/FormList";
-import FormDisplay from "./components/FormDisplay";
-import { Form } from "./types/form";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import FormListComponent from "./components/form-list/form-list.component";
+import FormEditComponent from "./components/form-edit/form-edit.component";
 import "./App.css";
 
 function App() {
-  const [selectedForm, setSelectedForm] = useState<Form | null>(null);
-
-  const handleFormSelect = (form: Form) => {
-    setSelectedForm(form);
-  };
-
   return (
-    <div className="app">
-      <h1>Formularios Dinámicos</h1>
-      <FormList onFormSelect={handleFormSelect} />
-      {selectedForm && <FormDisplay form={selectedForm} />}
-    </div>
+    <Router>
+      <div className="app">
+        <Routes>
+          <Route path="/" element={<FormListComponent />} />
+          <Route path="/edit/:formId" element={<FormEditComponent />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
