@@ -73,39 +73,41 @@ function FormInputEditComponent({ form, onClose, onSave }: FormInputEditProps) {
     <div className="modal">
       <div className="modal-content">
         <h2>{form.id ? "Editar Formulario" : "Crear Formulario"}</h2>
-        <input
-          type="text"
-          value={name}
-          onChange={(e) => handleNameChange(e.target.value)}
-          placeholder="Nombre del formulario"
-          className={name.trim() === "" ? "input-error" : ""}
-        />
-        {fields.map((field, index) => (
-          <div key={index} className="field-edit">
-            <input
-              type="text"
-              value={field.label}
-              onChange={(e) =>
-                handleFieldChange(index, "label", e.target.value)
-              }
-              placeholder="Nombre Input"
-              className={field.label.trim() === "" ? "input-error" : ""}
-            />
-            <select
-              value={field.fieldType}
-              onChange={(e) =>
-                handleFieldChange(index, "fieldType", e.target.value)
-              }
-            >
-              <option value="text">Texto</option>
-              <option value="number">Número</option>
-              <option value="date">Fecha</option>
-              <option value="checkbox">Checkbox</option>
-            </select>
-            <button onClick={() => handleRemoveField(index)}>Eliminar</button>
-          </div>
-        ))}
-        <button onClick={handleAddField}>Agregar Campo</button>
+        <div className="modal-body">
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => handleNameChange(e.target.value)}
+            placeholder="Nombre del formulario"
+            className={name.trim() === "" ? "input-error" : ""}
+          />
+          {fields.map((field, index) => (
+            <div key={index} className="field-edit">
+              <input
+                type="text"
+                value={field.label}
+                onChange={(e) =>
+                  handleFieldChange(index, "label", e.target.value)
+                }
+                placeholder="Etiqueta"
+                className={field.label.trim() === "" ? "input-error" : ""}
+              />
+              <select
+                value={field.fieldType}
+                onChange={(e) =>
+                  handleFieldChange(index, "fieldType", e.target.value)
+                }
+              >
+                <option value="text">Texto</option>
+                <option value="number">Número</option>
+                <option value="date">Fecha</option>
+                <option value="checkbox">Checkbox</option>
+              </select>
+              <button onClick={() => handleRemoveField(index)}>Eliminar</button>
+            </div>
+          ))}
+          <button onClick={handleAddField}>Agregar Campo</button>
+        </div>
         <div className="modal-actions">
           <button onClick={handleSubmit} disabled={!isFormValid()}>
             Guardar

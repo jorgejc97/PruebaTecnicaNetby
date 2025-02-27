@@ -7,7 +7,7 @@ namespace DynamicFormApi.Infrastructure
     {
         public static async Task SeedInitialDataAsync(FormService service)
         {
-            // Verificar si ya hay datos
+
             var existingForms = await service.GetAllFormsAsync();
             if (existingForms.Any()) return;
 
@@ -26,7 +26,7 @@ namespace DynamicFormApi.Infrastructure
             }
             });
 
-            // Formulario 2: Mascotas
+
             await service.CreateFormAsync(new CreateFormDto
             {
                 Name = "Mascotas",

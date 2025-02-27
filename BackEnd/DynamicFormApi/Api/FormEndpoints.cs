@@ -1,5 +1,6 @@
 ﻿using DynamicFormApi.Aplication.DTOs;
 using DynamicFormApi.Aplication.Services;
+using DynamicFormApi.Application.Services;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 
@@ -77,6 +78,22 @@ public static class FormEndpoints
             return Results.NoContent();
         })
         .WithName("DeleteForm")
+        .WithOpenApi();
+
+        app.MapPost("/forms/{formId}/responses", async (int formId, FormResponseDto responseDto, FormResponseService service) =>
+        {
+            var response = await service.AddResponseAsync(formId, responseDto);
+            return Results.Created($"/forms/{formId}/responses/{response.Id}", response);
+        })
+        .WithName("AddResponse")
+        .WithOpenApi();
+
+        app.MapGet("/forms/{formId}/responses", async (int formId, FormResponseService service) =>
+        {
+            var responses = await service.GetResponsesAsync(formId);
+            return Results.Ok(responses);
+        })
+        .WithName("GetResponses")
         .WithOpenApi();
     }
 }

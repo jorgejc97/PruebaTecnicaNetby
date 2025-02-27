@@ -1,5 +1,6 @@
 using DynamicFormApi.Api;
 using DynamicFormApi.Aplication.Services;
+using DynamicFormApi.Application.Services;
 using DynamicFormApi.Domain.Interfaces;
 using DynamicFormApi.Infrastructure;
 using DynamicFormApi.Infrastructure.Data;
@@ -9,11 +10,12 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configurar servicios
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddScoped<IFormRepository, FormRepository>();
 builder.Services.AddScoped<FormService>();
+builder.Services.AddScoped<IFormResponseRepository, FormResponseRepository>();
+builder.Services.AddScoped<FormResponseService>();
 
 builder.Services.AddCors(options =>
 {

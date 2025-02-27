@@ -31,3 +31,20 @@ export const updateForm = async (
 export const deleteForm = async (id: number): Promise<void> => {
   await axios.delete(`${API_URL}/forms/${id}`);
 };
+
+export const addResponse = async (
+  formId: number,
+  responseData: string
+): Promise<{ id: number; responseData: string }> => {
+  const response = await axios.post(`${API_URL}/forms/${formId}/responses`, {
+    responseData,
+  });
+  return response.data;
+};
+
+export const getResponses = async (
+  formId: number
+): Promise<{ id: number; responseData: string }[]> => {
+  const response = await axios.get(`${API_URL}/forms/${formId}/responses`);
+  return response.data;
+};

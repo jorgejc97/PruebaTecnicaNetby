@@ -1,5 +1,5 @@
 export interface FormField {
-  id?: number; // Opcional para creación
+  id?: number;
   label: string;
   fieldType: string;
 }
