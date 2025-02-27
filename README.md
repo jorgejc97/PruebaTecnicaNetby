@@ -30,8 +30,8 @@ Aplicativo web para gestionar formularios dinámicos con ingreso y consulta de r
 
 ## Evidencias
 
-1. Listado: ![Listado](screenshots/listado.png)
-2. Creación: ![Creación](screenshots/creacion.png)
-3. Edición: ![Edición](screenshots/edicion.png)
-4. Ingreso: ![Ingreso](screenshots/ingreso.png)
-5. Consulta: ![Consulta](screenshots/consulta.png)
+1. Listado: ![listado](screenshots/listado.png)
+2. Creación: ![creación](screenshots/creacion.png)
+3. Edición: ![edición](screenshots/edicion.png)
+4. Ingreso: ![ingreso](screenshots/ingreso.png)
+5. Consulta: ![consulta](screenshots/consulta.png)
